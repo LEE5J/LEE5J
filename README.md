@@ -1,16 +1,17 @@
-## Hi there 👋
+# LEE5J
 
-<!--
-**LEE5J/LEE5J** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Hi, I’m LEE5J 👋
+I build small, reliable tools and automate workflows.
 
-Here are some ideas to get you started:
+## Focus
+- Developer tooling and workflow automation
+- Clean APIs and maintainable systems
+- Experiments with AI-assisted software
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## What I’m up to
+- Learning by shipping small projects
+- Open to collaborations with clear scope
+
+## GitHub
+![GitHub stats](https://github-readme-stats.vercel.app/api?username=LEE5J&show_icons=true&hide_title=true&hide_rank=true)
+![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=LEE5J&layout=compact)
