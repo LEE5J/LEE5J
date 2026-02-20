@@ -3,11 +3,14 @@
 Email: lori2mai11ya@gmail.com
 Hugging Face: https://huggingface.co/lee5j
 
+I'm a full-stack AI agent developer, handling everything from server setup to chunking and rag llmserving.
+
 ## Core strengths
 - Parallel programming and GPU/hardware performance
 - Proxmox and Ubuntu CUDA environments
 - Docker and virtualization
 - GPU parallel inference, quantization, and efficient inference
+- LLM serving and optimization for on-premises solutions
 
 ## Tech stack
 ![Java](https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white)
