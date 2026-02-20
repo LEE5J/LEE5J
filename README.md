@@ -21,9 +21,10 @@ I'm a full-stack AI agent developer, handling everything from server setup to ch
 ![vLLM](https://img.shields.io/badge/vLLM-0B5FFF?style=for-the-badge&logo=lightning&logoColor=white)
 ![Milvus](https://img.shields.io/badge/Milvus-00A1EA?style=for-the-badge&logo=milvus&logoColor=white)
 
-## Highlights
+## Highlight
 - Graduation project (2024.01 - 2024.12): AI_router with direct vLLM serving and GPU inference research ([details](graduation.md))
-- Voinosis (2023.12 - 2024.04): Interspeech emotion recognition and VAD model testing ([details](voinosis.md))
+- Voinosis (2024.12 - 2025.04): Interspeech emotion recognition and VAD model testing ([details](voinosis.md))
+- RoKN CERT(2022.04 - 2022.11): Computer Emergency Response Team(Security monitoring and intrusion detection (alert triage and initial analysis) )
 
 ## Other repositories
 - JMTdongsan/AI_router: RAG-based QA system using Milvus + vLLM with Flask APIs, tools, and crawling
