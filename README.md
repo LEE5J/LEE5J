@@ -26,7 +26,7 @@ I'm a full-stack AI agent developer, handling everything from server setup to ch
 - Graduation project (2024.01 - 2024.12): AI_router with direct vLLM serving and GPU inference research ([details](graduation.md))
 - Voinosis (2024.12 - 2025.04): Interspeech emotion recognition and VAD model testing ([details](voinosis.md))
 - RoKN CERT(2022.04 - 2022.11): Computer Emergency Response Team(Security monitoring and intrusion detection (alert triage and initial analysis) )
-- Undergraduate Researcher(2025.02 - current) : DMS lab in konkuk univ. overall NLP, especially efficient inference.
+- Undergraduate Researcher(2024.02 - current) : DMS lab in konkuk univ. overall NLP, especially efficient inference.
 
 ## Other repositories
 - JMTdongsan/AI_router: RAG-based QA system using Milvus + vLLM with Flask APIs, tools, and crawling
