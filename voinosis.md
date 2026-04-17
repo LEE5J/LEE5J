@@ -1,27 +1,27 @@
 # Voinosis (2023.12 - 2024.04)
 
-## Task 1: Interspeech (IEEE) Emotion Recognition
-Focus: Nature Condition Emotion Recognition challenge.
+## 작업 1: Interspeech (IEEE) 감정 인식
+주제: Nature Condition Emotion Recognition 챌린지
 
-Contributions
-- Integrated teammates' modules for end-to-end training
-- Maximized compute usage with parallel programming
-- Added NLP features using Whisper for speech-to-text
-- Built a sentiment lexicon approach to count category words (anger, POS, etc.)
+기여
+- 팀원들이 만든 모듈을 통합해 end-to-end 학습 파이프라인을 구성했습니다.
+- 병렬 프로그래밍으로 연산 자원 활용도를 극대화했습니다.
+- Whisper 기반 speech-to-text를 활용해 NLP 피처를 추가했습니다.
+- 감정 카테고리 단어(분노, 긍정 등)를 세는 sentiment lexicon 방식을 구축했습니다.
 
-Results
-- 2nd place in valence score
-- 4th place overall
+결과
+- valence score 2위
+- 최종 종합 4위
 
-Repositories (one-line roles)
-- InterspeechRecognition2025: competition workspace with feature extraction and ensemble notebooks
-- is2025_llm_promt: LLM prompt tests on STT text for downstream analysis
+관련 저장소
+- InterspeechRecognition2025: feature extraction과 ensemble notebook이 포함된 대회 작업 공간
+- is2025_llm_promt: STT 텍스트 기반 downstream 분석을 위한 LLM 프롬프트 실험
 
-## Task 2: VAD Model Testing
-Built a component to visualize how noise inclusion degrades VAD performance and report the metric clearly.
+## 작업 2: VAD 모델 테스트
+노이즈가 포함될 때 VAD 성능이 어떻게 저하되는지 시각화하고, 지표를 명확히 보여주는 컴포넌트를 만들었습니다.
 
-Repositories (one-line roles)
-- snr_mix_test: generates synthetic noisy audio at multiple SNR levels to probe VAD robustness
-- vad_preprocess: SGVAD-based preprocessing with SNR tests and TextGrid parsing for evaluation
-- vad_performance: VAD performance evaluation that builds TextGrid labels from Whisper outputs
-- noise_module_test: quick experiments around noise/VAD module setup and benchmarking
+관련 저장소
+- snr_mix_test: 여러 SNR 조건의 합성 noisy audio를 생성해 VAD 강건성을 점검
+- vad_preprocess: SGVAD 기반 전처리, SNR 테스트, TextGrid 파싱 평가
+- vad_performance: Whisper 출력으로 TextGrid 라벨을 구성해 VAD 성능 평가
+- noise_module_test: noise/VAD 모듈 구성과 벤치마킹을 위한 빠른 실험

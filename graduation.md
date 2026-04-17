@@ -1,47 +1,47 @@
-# Graduation Project: AI_router (2024.01 - 2024.12)
+# 졸업 프로젝트: AI_router (2024.01 - 2024.12)
 
-Repository: JMTdongsan/AI_router
+저장소: JMTdongsan/AI_router
 
-## Summary
-- Built a RAG-based QA system using Milvus + vLLM with Flask APIs, tools, and crawling.
-- For content not included in the repository pipeline, I served models directly with vLLM.
-- Researched GPU parallel inference methods, quantization, and efficient inference techniques.
+## 요약
+- Milvus + vLLM 기반의 RAG QA 시스템을 Flask API, 툴, 크롤링 파이프라인과 함께 구축했습니다.
+- 저장소 파이프라인에 포함되지 않은 콘텐츠는 vLLM으로 직접 서빙했습니다.
+- GPU 병렬 추론, 양자화, 효율적인 추론 기법을 연구했습니다.
 
-## Architecture for reliability
-I structured the system as an agent-like pipeline with explicit function-call steps to reduce hallucinations and maximize answer reliability.
-1) RAG with a vector DB
-2) RAG with a search engine
-3) Answer rejection step when evidence is insufficient
+## 신뢰성을 위한 아키텍처
+환각을 줄이고 답변 신뢰도를 높이기 위해, 명시적인 function-call 단계가 있는 에이전트형 파이프라인으로 시스템을 구성했습니다.
+1) 벡터 DB 기반 RAG
+2) 검색엔진 기반 RAG
+3) 근거가 부족할 때 답변을 거절하는 단계
 
-## Data preprocessing
-- Chunking was performed by an LLM to preserve semantic boundaries.
-- For embedding accuracy, an LLM extracted only the core content to embed instead of full pages.
+## 데이터 전처리
+- 의미 경계를 보존하기 위해 청킹은 LLM으로 수행했습니다.
+- 임베딩 정확도를 높이기 위해 전체 페이지 대신 핵심 내용만 LLM으로 추출해 임베딩했습니다.
 
-## Cost analysis and on-prem decision
-We could have used a paid API, but GPT 4 32K cost $120 per 1M tokens. With about 500 pages per year, each page averaging 2,000 characters and ~2 tokens per character(becase of korean), preprocessing required roughly 3M tokens after a 50% overlap rate during chunking.
-Seoul Metropolitan Government redevelopment documents cover 13 sectors: overall city direction, urban maintenance (7 types), residential environment improvement, urban regeneration, roads and streets, and parks/green spaces (2 types).
-This expanded to about 40M tokens per update every 6 months. At $120 * 40, this was roughly 6 million KRW at the exchange rate at the time, so I decided to build a local serving stack.
+## 비용 분석과 온프레미스 결정
+유료 API를 사용할 수도 있었지만, GPT 4 32K는 100만 토큰당 120달러였습니다. 연간 약 500페이지, 페이지당 평균 2,000자, 한글 기준 문자당 약 2토큰으로 계산하면 청킹 시 50% 오버랩을 적용했을 때 전처리에만 약 300만 토큰이 필요했습니다.
+서울시 재개발 문서는 도시 전체 방향, 도시정비(7종), 주거환경개선, 도시재생, 도로/가로, 공원/녹지(2종) 등 13개 섹터를 다루고 있습니다.
+이를 기준으로 6개월마다 한 번의 업데이트에 약 4,000만 토큰 규모가 필요했고, 당시 환율로 계산하면 약 600만 원 수준이어서 로컬 서빙 스택을 구축하기로 결정했습니다.
 
-## Optimization case study
-During the real estate chatbot graduation project, I needed local serving of Qwen-72B to reduce API cost while keeping high inference performance. It required about 180GB VRAM.
+## 최적화 사례
+부동산 챗봇 졸업 프로젝트에서 API 비용을 줄이면서도 높은 추론 성능을 유지하기 위해 Qwen-72B를 로컬에서 서빙해야 했고, 약 180GB VRAM이 필요했습니다.
 
-### Hardware optimization
-- Replaced an H100-class target with 4x RTX 3090s for local serving.
-- Reduced multi-GPU communication bottlenecks by improving NVLink usage and rebalancing PCIe lanes to raise bandwidth efficiency.
-- Consumer CPUs are limited to 24 PCIe lanes. I reduced GPU P2P bottlenecks by using a motherboard supporting 8+8+8+4 lanes and leveraging NVLink.
-- The initial 16+4+4+4 configuration showed GPU P2P as the bottleneck, so I procured a board with PCIe bifurcation support.
-- Throughput increased by about 80% (100 concurrency), rising from 220-280 tps to 420 tps.
+### 하드웨어 최적화
+- H100급 구성을 대신해 RTX 3090 4장으로 로컬 서빙 환경을 구성했습니다.
+- NVLink 활용과 PCIe lane 재배치를 통해 멀티 GPU 통신 병목을 줄이고 대역폭 효율을 높였습니다.
+- 일반 소비자용 CPU는 PCIe lane이 24개로 제한되기 때문에, 8+8+8+4 구성을 지원하는 메인보드와 NVLink를 활용해 GPU P2P 병목을 완화했습니다.
+- 초기 16+4+4+4 구성에서는 GPU P2P가 병목이어서 PCIe bifurcation 지원 보드를 추가로 확보했습니다.
+- 처리량은 동시성 100 기준 약 80% 향상되어 220-280 tps에서 420 tps까지 증가했습니다.
 
-### Serving lightweight optimization
-- Evaluated quantization methods and analyzed 4-bit model collapse and the low throughput of GGUF.
-- Verified stability for CoT and function-call usage to avoid langfusion or model collapse at higher quantization levels.
-- Chose vLLM-based GPTQ INT8 to balance throughput and stability.
+### 서빙 경량화 최적화
+- 양자화 방식을 비교하며 4비트 모델 붕괴와 GGUF의 낮은 처리량 문제를 분석했습니다.
+- 높은 양자화 수준에서 langfusion이나 모델 붕괴가 발생하지 않도록 CoT와 function-call 사용 안정성을 검증했습니다.
+- 처리량과 안정성의 균형을 위해 vLLM 기반 GPTQ INT8을 선택했습니다.
 
-### Memory optimization
-- Optimized VRAM usage to keep as much context as possible.
-- Selected vLLM with KV cache quantization and PagedAttention to maximize context length.
-- Avoided CUDA graphs to prevent extra memory consumption.
-- Used tensor parallel instead of pipeline parallel because pipeline parallel consumed more VRAM and reduced context (PP likely stores activation values).
+### 메모리 최적화
+- 가능한 많은 컨텍스트를 유지할 수 있도록 VRAM 사용량을 최적화했습니다.
+- 컨텍스트 길이를 극대화하기 위해 KV cache quantization과 PagedAttention을 지원하는 vLLM을 선택했습니다.
+- 추가 메모리 사용을 피하기 위해 CUDA graphs는 사용하지 않았습니다.
+- pipeline parallel은 activation 값을 저장하면서 VRAM을 더 많이 사용하고 컨텍스트 길이도 줄어들어 tensor parallel을 사용했습니다.
 
-## Lessons learned
-GPU interconnect tuning and memory techniques like PagedAttention are decisive factors for inference performance when serving large models under tight resource constraints.
+## 배운 점
+제한된 자원에서 대형 모델을 서빙할 때는 GPU interconnect 튜닝과 PagedAttention 같은 메모리 최적화 기법이 추론 성능을 좌우하는 핵심 요소라는 점을 배웠습니다.
