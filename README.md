@@ -2,7 +2,7 @@
 
 Email: lori2mai11ya@gmail.com
 Hugging Face: https://huggingface.co/lee5j
-paper study: 
+paper study: https://github.com/LEE5J/book_paper
 
 I'm a full-stack AI agent developer, handling everything from server setup to chunking and rag llmserving.
 
